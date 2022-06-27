@@ -7,9 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get(':client')
-  getHello(@Param('client', new ValidationPipe({validateCustomDecorators: true})) client: ClientDTO): string {
-    // const clientDTO = new ClientDTO();
-    // clientDTO.client = client;
+  getHello(@Param('client') client: ClientDTO): string {
     return this.appService.getHello();
   }
 }
