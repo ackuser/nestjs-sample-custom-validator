@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get(':client')
-  getHello(@Param('client') client: ClientDTO): string {
+  getHello(@Param() client: ClientDTO): string {
     return this.appService.getHello();
   }
 }

@@ -8,6 +8,10 @@ export class IsValidClientConstraint implements ValidatorConstraintInterface {
     console.log(client)
     return client.includes('ZZZ');
   }
+
+  defaultMessage(args: ValidationArguments): string {
+    return `Client has to be ZZZxxxxxxx`;
+}
 }
 
 export function IsValidClient(validationOptions?: ValidationOptions) {
