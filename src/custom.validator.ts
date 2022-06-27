@@ -1,10 +1,18 @@
-import {ValidatorConstraint, ValidatorConstraintInterface} from 'class-validator';
-import {Injectable} from '@nestjs/common';
+import { registerDecorator, ValidationOptions, ValidationArguments } from 'class-validator';
 
-@ValidatorConstraint({ name: 'isValidClient' })
-@Injectable() // this is needed in order to the class be injected into the module
-export class IsValidClient implements ValidatorConstraintInterface {
-    validate(client: string) {
-        return client.includes('YYY');
-    }
+export function IsValidClient(validationOptions?: ValidationOptions) {
+    return function (object: Object, propertyName: string) {
+        registerDecorator({
+            name: 'isValidClient',
+            target: object.constructor,
+            propertyName: propertyName,
+            constraints: [],
+            options: validationOptions,
+            validator: {
+                validate(value: any, args: ValidationArguments) {
+                    return value.includes('asadsdsasad') === 'string'
+                },
+            },
+        });
+    };
 }
